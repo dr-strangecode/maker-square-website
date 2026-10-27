@@ -1,136 +1,51 @@
-# Little Bloom House / Maker Square public site
+# Maker Square Play Place — website
 
-Static Astro marketing site. Not the Rails ops app. Not Square Online.
+A single-brand Astro 5 website for **Maker Square Play Place** in Johnson City, Tennessee.
 
-## Skins
+The illustrated homepage, supporting pages, party-request and contact forms, neighborhood art, and existing facility photographs are retained from the original design branch. There is no alternate brand or runtime theme switch.
 
-- `PUBLIC_BRAND=lbh` — October hold (default). Public name Little Bloom House. Open play is $7 flat. Extra adults are free.
-- `PUBLIC_BRAND=maker` — November relaunch. Public name Maker Square. Open play is $15 / $13 / $11.
+## Development
 
-One codebase. Flip the env on Cloudflare Pages, then point DNS.
-
-## Local (no Docker)
+Requirements: Node.js 20+ and npm.
 
 ```bash
-cd website
+npm ci
 cp .env.example .env
-# paste Web3Forms key when you have it
-npm install
 npm run dev
 ```
 
-Open http://localhost:8080
-
-## Docker + VS Code (bind-mount `~/code/mspp/website`)
-
-Yes. Run Astro in a container, edit files on your machine. The container sees every save.
-
-### 1. Put the project in that folder
-
-Copy this `website/` tree into `~/code/mspp/website` (create the folders if needed):
-
-```bash
-mkdir -p ~/code/mspp/website
-cp -a /path/to/artifacts/website/. ~/code/mspp/website/
-cd ~/code/mspp/website
-cp -n .env.example .env
-```
-
-Open **`~/code/mspp/website`** in VS Code. That is the folder you edit. Do not open the files inside the container.
-
-### 2. Easiest: Compose from that folder
-
-```bash
-cd ~/code/mspp/website
-docker compose up --build
-```
-
-Then http://localhost:8080
-
-Stop with Ctrl+C, or `docker compose down` from the same folder.
-
-### 3. Same thing with explicit docker commands
-
-Use this if you want the mount path written out. Works from any current directory.
-
-```bash
-# once, from the project folder
-cd ~/code/mspp/website
-docker build -t mspp-website:dev .
-
-docker run --rm -it \
-  --name mspp-website \
-  -p 8080:8080 \
-  -v "$HOME/code/mspp/website":/app \
-  -v mspp-website-node-modules:/app/node_modules \
-  -e PUBLIC_BRAND=lbh \
-  -e CHOKIDAR_USEPOLLING=true \
-  -e WATCHPACK_POLLING=true \
-  --env-file "$HOME/code/mspp/website/.env" \
-  mspp-website:dev
-```
-
-`-v "$HOME/code/mspp/website":/app` is the bind mount: your laptop folder is `/app` in the container.  
-`-v mspp-website-node-modules:/app/node_modules` keeps Linux `node_modules` in a Docker volume so a Mac/Windows install does not break the container.
-
-If your home path is different, change only the left side of the first `-v`. Examples:
-
-```bash
-# already standing in code/mspp/website
--v "$(pwd)":/app
-
-# Windows PowerShell
--v C:\Users\YOU\code\mspp\website:/app
-```
-
-### 4. Compose from somewhere else
-
-```bash
-export HOST_WEBSITE_DIR="$HOME/code/mspp/website"
-docker compose -f "$HOST_WEBSITE_DIR/docker-compose.yml" --project-directory "$HOST_WEBSITE_DIR" up --build
-```
-
-### Rebuild after package.json changes
-
-```bash
-docker compose up --build
-# or
-docker exec mspp-website npm ci
-```
-
-### Production-style preview (no live reload)
-
-```bash
-docker compose run --rm --service-ports web npm run build
-docker compose run --rm --service-ports web npm run preview
-```
-
-Still http://localhost:8080
-
-
-## Forms
-
-1. Create a free key at https://web3forms.com bound to `hello@littlebloomhouse.com`.
-2. Set `PUBLIC_WEB3FORMS_ACCESS_KEY` in `.env` and in Cloudflare Pages → Settings → Environment variables.
-3. Hidden `botcheck` honeypot is already on both forms. Add Turnstile later only if spam shows up.
-
-Without a key, the pages show phone/email instead of a dead form.
-
-## Waiver button
-
-Set `PUBLIC_SMARTWAIVER_URL` when counsel clears the template. Until then the Rules page tells families to ask at the desk.
+Astro runs at http://localhost:8080. Use `npm run build` before opening a pull request. The site is static and the build output is `dist/`.
 
 ## Cloudflare Pages
 
-- Framework preset: Astro
+Connect this repository as a **separate Pages project**. Use:
+- Framework: Astro
+- Production branch: `master` (currently the repository default; update if you rename it)
 - Build command: `npm run build`
 - Output directory: `dist`
-- Root directory: this folder
-- Env: `PUBLIC_BRAND=lbh` for October
-- `_redirects` in `public/` ships with the build
+- Root directory: repository root
+- Domain: `makersquareplayplace.com` (attach after DNS is ready)
+- No brand-selection environment variable is needed.
 
-October DNS: point `littlebloomhousejc.com` at this Pages project. Do not stand up a second Google listing.
+Set `PUBLIC_WEB3FORMS_ACCESS_KEY` and `PUBLIC_SMARTWAIVER_URL` only when ready. Do not commit production secrets.
 
-## What this site does not do
+## Content and images
 
-Cart, gift cards, Square Appointments, Mickey/event tickets, membership checkout, open-play tickets.
+- The real photographs in `public/images/` (gallery, hero, party) are intentionally kept.
+- Maker Square logo and illustrated neighborhood SVG are kept.
+- Set `PUBLIC_MAKER_CONCEPT_ART=true` explicitly for an illustrative *design review* only. Default is off, including in production. The concept images are not actual venue photography.
+- The business pin linked in Maps still refers to the existing historical Google Maps listing, pending its rebranding. It deliberately points to the rear mall location rather than searching the mall street address.
+- Social-media links remain hidden until the official Maker Square account URLs are confirmed.
+- Current hours, admission, party details, and waiver policies are carried forward as-is for a separate operational review.
+
+## Forms and integrations
+
+Contact and party requests use Web3Forms when `PUBLIC_WEB3FORMS_ACCESS_KEY` is set. Configure the key to deliver messages to `hello@makersquareplayplace.com`. Verify with a test submission after setup. Without a key, the forms show contact alternatives.
+
+The waiver button uses `PUBLIC_SMARTWAIVER_URL` when provided. This site does not yet offer online ticketing, payments, membership checkout, live occupancy, or reservation availability.
+
+## Branches and deployment safety
+
+This repository is independent of the existing Little Bloom House website; neither its source code nor its Cloudflare project should be changed during this cleanup. Review and merge `refactor/maker-only-site` before deploying it to the new Pages project. Keep the legacy domain/redirect work separate until launch.
+
+See `docs/maker-playtown-design.md` for the artwork and homepage implementation notes.

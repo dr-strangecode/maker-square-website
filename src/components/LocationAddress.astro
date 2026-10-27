@@ -1,5 +1,5 @@
 ---
-import { brand, brandId } from "../config/site";
+import { brand } from "../config/site";
 
 interface Props {
   showParking?: boolean;
@@ -7,7 +7,6 @@ interface Props {
 }
 const { showParking = false, compact = false } = Astro.props;
 ---
-{brandId === "maker" ? (
   <div class:list={["location-links", { "location-links-compact": compact }]}>
     <a
       class="location-address-link"
@@ -30,9 +29,3 @@ const { showParking = false, compact = false } = Astro.props;
       Get driving directions <span aria-hidden="true">↗</span>
     </a>
   </div>
-) : (
-  <div class="location-links">
-    <p>{brand.addressLine1}<br />{brand.addressLine2}<br />{brand.addressLine3}</p>
-    {showParking && <p>{brand.parking}</p>}
-  </div>
-)}

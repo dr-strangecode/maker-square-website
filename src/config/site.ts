@@ -1,10 +1,7 @@
-export type BrandId = "lbh" | "maker";
-
-const rawBrand = (import.meta.env.PUBLIC_BRAND ?? "lbh").toLowerCase();
-export const brandId: BrandId = rawBrand === "maker" ? "maker" : "lbh";
-
-const shared = {
-  email: "hello@littlebloomhouse.com",
+// Single-brand Maker Square Play Place configuration.
+// Hours, prices, and party policies are intentionally retained from the previous site pending review.
+export const brand = {
+  email: "hello@makersquareplayplace.com",
   phoneDisplay: "(423) 524-9500",
   phoneTel: "+14235249500",
   addressLine1: "The Mall at Johnson City",
@@ -109,44 +106,18 @@ const shared = {
     { group: "Private Party", value: "Saturday 2:00–3:45 pm · Private Party" },
     { group: "Private Party", value: "Saturday 5:00–6:45 pm · Private Party" },
   ],
-  facebook: "https://www.facebook.com/littlebloomhousejc",
-  instagram: "https://www.instagram.com/thelittlebloomhouse",
+  facebook: "", // Add the official Maker Square account when confirmed
+  instagram: "", // Add the official Maker Square account when confirmed
   web3formsKey: import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "",
   smartwaiverUrl: import.meta.env.PUBLIC_SMARTWAIVER_URL ?? "",
-};
-
-const skins = {
-  lbh: {
-    id: "lbh" as const,
-    name: "Little Bloom House",
-    short: "Little Bloom House",
-    titleSuffix: "Little Bloom House",
-    tagline: "Johnson City’s first play cafe",
-    logoSrc: "/images/logo-lbh.png",
-    logoAlt: "Little Bloom House wordmark",
-    showRelaunchNote: true,
-    footerLegal: "Little Bloom House is under new owners. Same suite at the Mall at Johnson City.",
-    openPlay: {
-      summary: "$7 per playing child",
-      note: "October tickets are a reduced price while we prepare to relaunch in November!",
-      rows: [
-        { label: "Playing child", value: "$7" },
-        { label: "Infant in arms, with a paying sibling", value: "Free" },
-        { label: "Grip socks, if you need a pair", value: "$2.50" },
-      ],
-    },
-  },
-  maker: {
-    id: "maker" as const,
-    name: "Maker Square",
-    short: "Maker Square",
-    titleSuffix: "Maker Square",
-    tagline: "A play place at the Mall at Johnson City",
-    logoSrc: "/images/logo-maker.png",
-    logoAlt: "Maker Square play place logo",
-    showRelaunchNote: false,
-    footerLegal: "Maker Square · Suite E3C · The Mall at Johnson City",
-    openPlay: {
+  name: "Maker Square Play Place",
+  short: "Maker Square",
+  titleSuffix: "Maker Square Play Place",
+  tagline: "A play place at the Mall at Johnson City",
+  logoSrc: "/images/logo-maker.png",
+  logoAlt: "Maker Square play place logo",
+  footerLegal: "Maker Square Play Place · Suite E3C · The Mall at Johnson City",
+  openPlay: {
       summary: "$15, then $13, then $11",
       note: "The step-down is for children who live in the same household. Cousins and neighbors each start at $15.",
       rows: [
@@ -158,16 +129,5 @@ const skins = {
         { label: "Grip socks, if you need a pair", value: "$2.50" },
       ],
     },
-  },
 };
 
-export const brand = { ...shared, ...skins[brandId] };
-
-export const nav = [
-  { href: "/", label: "Home" },
-  { href: "/hours", label: "Hours" },
-  { href: "/rules", label: "Rules" },
-  { href: "/parties", label: "Parties" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
-];
