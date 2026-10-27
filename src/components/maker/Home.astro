@@ -5,11 +5,9 @@ import photo0 from './concept-0.txt?raw';
 import photo1 from './concept-1.txt?raw';
 import photo2 from './concept-2.txt?raw';
 import photo3 from './concept-3.txt?raw';
-// Concept photography is restricted to this design branch unless explicitly enabled.
-// A production build defaults to the existing, real facility photographs.
-const setting = import.meta.env.PUBLIC_MAKER_CONCEPT_ART;
-const designPreview = process.env.CF_PAGES_BRANCH === 'design/maker-square-playtown-v2';
-const concept = setting === 'true' || (setting !== 'false' && designPreview);
+// Concept photography is opt-in for design reviews only.
+// Regular builds use the existing real facility photographs.
+const concept = import.meta.env.PUBLIC_MAKER_CONCEPT_ART === 'true';
 const photoURI = 'data:image/webp;base64,' + [photo0, photo1, photo2, photo3].map(part => part.trim()).join('');
 const photoDefinition = concept ? `<svg width="0" height="0" class="ms-definitions" aria-hidden="true"><defs><image id="ms-concept-atlas" href="${photoURI}" width="480" height="476" /></defs></svg>` : '';
 const escape = (text: string) => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');

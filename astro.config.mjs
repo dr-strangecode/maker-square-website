@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://littlebloomhousejc.com",
+  site: "https://makersquareplayplace.com",
   output: "static",
   trailingSlash: "never",
   server: {

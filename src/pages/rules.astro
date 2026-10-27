@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { brand, brandId } from "../config/site";
+import { brand } from "../config/site";
 const waiverReady = Boolean(brand.smartwaiverUrl);
-const isMaker = brandId === "maker";
 ---
 
 <BaseLayout title="Rules and waiver" description={`House rules and waiver for ${brand.name}.`}>
@@ -30,8 +29,7 @@ const isMaker = brandId === "maker";
     </div>
   </section>
 
-  {isMaker && (
-    <section class="section">
+  <section class="section">
       <div class="wrap">
         <p class="eyebrow">On the walls</p>
         <h2>Walking feet. Gentle hands. Big imaginations.</h2>
@@ -47,8 +45,7 @@ const isMaker = brandId === "maker";
           </article>
         </div>
       </div>
-    </section>
-  )}
+  </section>
 
   <section class="section alt">
     <div class="wrap grid-2">
@@ -68,11 +65,9 @@ const isMaker = brandId === "maker";
         </ul>
       </div>
       <div>
-        {isMaker && (
           <div class="poster-frame" style="margin-bottom: 18px;">
             <img src="/images/flyers/sock-size.jpg" alt="Find your sock size chart for non-slip socks" />
           </div>
-        )}
         <div class="card">
           <h3>About this waiver</h3>
           <p>

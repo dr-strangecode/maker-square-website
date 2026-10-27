@@ -1,23 +1,22 @@
 services:
   web:
     build: .
-    image: mspp-website:dev
-    container_name: mspp-website
+    image: maker-square-website:dev
+    container_name: maker-square-website
     ports:
       - "8080:8080"
     env_file:
       - path: .env
         required: false
     environment:
-      PUBLIC_BRAND: ${PUBLIC_BRAND:-lbh}
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     volumes:
       # Compose from ~/code/mspp/website so "." is that folder.
       # Override with HOST_WEBSITE_DIR if you start compose from elsewhere.
       - ${HOST_WEBSITE_DIR:-.}:/app
-      - mspp-website-node-modules:/app/node_modules
+      - maker-square-node-modules:/app/node_modules
     working_dir: /app
 
 volumes:
-  mspp-website-node-modules:
+  maker-square-node-modules:

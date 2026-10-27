@@ -1,24 +1,33 @@
-# Maker Square illustrated homepage
+# Maker Square illustrated playtown website
 
 ## Scope
-Rebuild of the approved signpost homepage on `design/maker-square-playtown-v2`. Uses real HTML links and text, original SVG icons and scenery, and the existing logo. The website is not a full-screen screenshot with hotspots. The default LBH brand remains separate. Existing party/contact forms and operational content are unchanged. No payment, membership billing, live occupancy, or booking backend is introduced.
 
-## Preview
-Keep `PUBLIC_BRAND=maker` in the Cloudflare preview environment. Concept photography is automatically enabled only when `CF_PAGES_BRANCH` is `design/maker-square-playtown-v2`. `PUBLIC_MAKER_CONCEPT_ART=true` explicitly enables it elsewhere; `false` always disables it. Production/default builds use the existing real facility photo paths. Concept mode includes a visible notice and image accessibility labels.
+This is the standalone **Maker Square Play Place** Astro site. It has one brand, one configuration, and no runtime skin switch. The previously approved signpost homepage is built with real HTML text and links, an original SVG illustration system, and the Maker Square logo. Existing contact and party inquiry forms and older facility photographs are preserved.
 
-The four `concept-*.txt` source chunks concatenate into one base64 WebP atlas of small photo crops from the owner-approved generated mockup. They are embedded once, only in concept mode. They are low-resolution review placeholders, not publication-ready photography. Replace with good real photographs before launch. No Peek N Play photographs or artwork are used.
+## Photography and previews
+
+Production and default previews use the retained, real facility photos in `public/images/`. For a visual design review only, set `PUBLIC_MAKER_CONCEPT_ART=true` to show the low-resolution illustrative photos from the approved concept image. The concept photos are **not** pictures of the actual play place; the site displays a notice in that mode. No third-party play-center imagery or artwork is used.
+
+The historic Google Maps URL still references the former business listing because that is the pin being used to guide families to the rear of the mall. Keep this until the listing is rebranded and directions have been verified.
 
 ## Structure
-- `src/components/maker/home.html`: editable homepage content and links.
-- `src/components/maker/header.html`: responsive icon navigation.
+
+- `src/components/maker/home.html`: homepage sections, editable text, and links.
+- `src/components/maker/header.html`: responsive illustrated navigation.
 - `src/components/maker/Home.astro`: image-mode selection and HTML assembly.
-- `public/images/maker/playtown.svg`: coordinated vector icons, gardens, road and houses.
-- `src/styles/playtown.css` and `playtown-responsive.css`: brand-scoped desktop and responsive styling.
-- `public/js/playtown.js`: mobile-menu behavior and progressive scroll reveals.
+- `src/config/site.ts`: single Maker Square configuration, including address and directions.
+- `src/components/LocationAddress.astro`: linked location and entrance information.
+- `public/images/maker/playtown.svg`: illustrated vectors, houses, road, garden, and icons.
+- `src/styles/global.css`: shared informational page and form layout.
+- `src/styles/playtown.css` and `playtown-responsive.css`: Maker Square presentation.
+- `public/js/playtown.js`: mobile navigation and progressive scroll reveals.
 
-All content is visible without JavaScript. Motion is disabled for reduced-motion preferences. Links have visible keyboard focus; Escape closes the mobile menu and restores focus. The new About page supplies the Our Story destination. Primary CTAs say Plan rather than pretending instant online booking exists.
+## Accessibility and testing
 
-## Validation performed
-Local Chromium rendering of the same homepage/header HTML partials, styles and JavaScript at 1440, 1122, 768, 390 and 360 px. No horizontal document overflow or JavaScript errors in that harness. Scroll reveal, mobile open/close, Escape/focus restoration, reduced-motion and JavaScript-disabled navigation checks passed.
+Interactive elements remain real links/buttons. The mobile menu handles keyboard navigation and escape-to-close. Motion respects reduced-motion preferences, and page content remains visible when JavaScript is unavailable.
 
-The local harness inlined SVG resources and used installed font fallbacks because network access was blocked. It is not a complete Astro build or hosted Cloudflare test. An Astro production build, exact production fonts, external sprite loading, real-photo mode and existing form submissions still require Cloudflare/browser validation. No forms were submitted during testing.
+Earlier design work included a local Chromium HTML-harness check at 1440, 1122, 768, 390, and 360 pixels, but that **does not establish that this standalone Astro application builds or renders correctly**. Before merging this refactor, run `npm ci && npm run build` and inspect the new Pages preview at desktop and mobile widths. Validate the submitted form destination before launch.
+
+## Pending content decisions
+
+Prices, party details, hours, capacity, phone number, and operating policies were transferred unchanged. Verify them in a separate content review. Official Maker Square social account URLs are intentionally blank until supplied. The new domain is `https://makersquareplayplace.com` and the website contact email is `hello@makersquareplayplace.com`.
