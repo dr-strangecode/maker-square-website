@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { brand, brandId } from "../config/site";
+const waiverReady = Boolean(brand.smartwaiverUrl);
+const isMaker = brandId === "maker";
+---
+
+<BaseLayout title="Rules and waiver" description={`House rules and waiver for ${brand.name}.`}>
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">Before play</p>
+      <h1>Rules and waiver</h1>
+      <p>
+        Every adult and child visiting us will need to sign the waiver. Children's waivers must be signed by their parent or legal guardian. You can sign the waiver before your visit by using the link below.
+      </p>
+
+      {waiverReady ? (
+        <div class="actions">
+          <a class="btn" href={brand.smartwaiverUrl} target="_blank" rel="noopener">Sign the waiver</a>
+        </div>
+      ) : (
+        <div class="notice">
+          <p>
+            The waiver link isn’t public yet. We’ll add a button here as soon as it’s ready.
+            Until then, ask at the desk or email
+            <a href={`mailto:${brand.email}`}>{brand.email}</a> and we’ll help.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  {isMaker && (
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">On the walls</p>
+        <h2>Walking feet. Gentle hands. Big imaginations.</h2>
+        <div class="poster-strip">
+          <article class="poster-card">
+            <img src="/images/flyers/walking-feet.jpg" alt="Walking Feet poster" />
+          </article>
+          <article class="poster-card">
+            <img src="/images/flyers/gentle-hands.jpg" alt="Gentle Hands poster" />
+          </article>
+          <article class="poster-card">
+            <img src="/images/flyers/big-imaginations.jpg" alt="Big Imaginations poster" />
+          </article>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section alt">
+    <div class="wrap grid-2">
+      <div>
+        <h2>House rules</h2>
+        <ul>
+          <li><strong>Supervision.</strong> A grown-up stays in the suite with their child.</li>
+          <li><strong>Ratio.</strong> We require a 4 children to 1 adult ratio per visit. Please bring an additional adult to help supervise if you are bringing more than 4 children to ensure everyone has a safe and enjoyable visit.</li>
+          <li><strong>Waiver.</strong> No play without a current waiver from that child’s parent or legal guardian. A host can’t sign for a guest.</li>
+          <li><strong>Socks.</strong> Grip socks are required on the play floor. Your own clean pair is fine. Need a pair for open play? $2.50 at the desk.</li>
+          <li><strong>Equipment.</strong> Please use the structures the way they were built, and keep grown-ups off the kid equipment.</li>
+          <li><strong>Toys.</strong> Play gently with toys and respect others' playtime. Avoid standing or climbing on toys.</li>
+          <li><strong>Kindness.</strong> We’re glad you’re here. Please skip rough play that could hurt someone, and leave the space ready for the next family.</li>
+          <li><strong>Health.</strong> If you or your child is sick, please come back another day.</li>
+          <li><strong>Pets.</strong> Please leave pets at home.</li>
+          <li><strong>Parties.</strong> Public Parties share the floor during open play. Private Party is after hours. Please be wrapped up at the end time so we can reset for the next family.</li>
+        </ul>
+      </div>
+      <div>
+        {isMaker && (
+          <div class="poster-frame" style="margin-bottom: 18px;">
+            <img src="/images/flyers/sock-size.jpg" alt="Find your sock size chart for non-slip socks" />
+          </div>
+        )}
+        <div class="card">
+          <h3>About this waiver</h3>
+          <p>
+            This page is the house rules, not the signed form. The signed waiver is kept by our waiver vendor.
+            Special programs, when we run them, get their own waiver.
+          </p>
+          <p>
+            Questions are welcome:
+            <a href={`mailto:${brand.email}`}>{brand.email}</a> or
+            <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

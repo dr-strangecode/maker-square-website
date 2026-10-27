@@ -1,0 +1,29 @@
+---
+import template from './home.html?raw';
+import { brand } from '../../config/site';
+import photo0 from './concept-0.txt?raw';
+import photo1 from './concept-1.txt?raw';
+import photo2 from './concept-2.txt?raw';
+import photo3 from './concept-3.txt?raw';
+// Concept photography is restricted to this design branch unless explicitly enabled.
+// A production build defaults to the existing, real facility photographs.
+const setting = import.meta.env.PUBLIC_MAKER_CONCEPT_ART;
+const designPreview = process.env.CF_PAGES_BRANCH === 'design/maker-square-playtown-v2';
+const concept = setting === 'true' || (setting !== 'false' && designPreview);
+const photoURI = 'data:image/webp;base64,' + [photo0, photo1, photo2, photo3].map(part => part.trim()).join('');
+const photoDefinition = concept ? `<svg width="0" height="0" class="ms-definitions" aria-hidden="true"><defs><image id="ms-concept-atlas" href="${photoURI}" width="480" height="476" /></defs></svg>` : '';
+const escape = (text: string) => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+function media(viewBox: string, src: string, alt: string, eager = false) {
+  if (concept) return `<svg viewBox="${viewBox}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrative design-preview image; not the current facility"><use href="#ms-concept-atlas" /></svg>`;
+  return `<img src="${escape(src)}" alt="${escape(alt)}" width="900" height="650" loading="${eager ? 'eager' : 'lazy'}" decoding="async" ${eager ? 'fetchpriority="high"' : ''}>`;
+}
+const html = template
+  .replace('{{MAPS_LOCATION_URL}}', escape(brand.mapsUrl))
+  .replace('{{MAPS_DIRECTIONS_URL}}', escape(brand.mapsDirectionsUrl))
+  .replace('{{HERO_MEDIA}}', media('0 0 480 408', '/images/hero-1.jpeg', 'Inside the Maker Square play space', true))
+  .replace('{{PLAY_MEDIA}}', media('0 408 160 68', '/images/gallery-1.jpg', 'The indoor play area'))
+  .replace('{{MEMBERSHIP_MEDIA}}', media('160 408 160 68', '/images/hero-1.jpeg', 'Play space for returning family visits'))
+  .replace('{{PARTY_MEDIA}}', media('320 408 160 68', '/images/party-table.jpg', 'Birthday party tables at the play place'))
+  .replace('{{CONCEPT_NOTE}}', concept ? '<aside class="ms-preview-note"><strong>Design preview.</strong> The concept photos are illustrative, not photographs of our current facility. Public-launch photography will show the real play place.</aside>' : '');
+---
+<Fragment set:html={photoDefinition + html} />

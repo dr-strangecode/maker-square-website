@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { brand, brandId } from "../config/site";
+const maker = brandId === "maker";
+const plans = [{name:"One child",price:55,description:"One child in the family"},{name:"Two children",price:99,description:"Two children in the same household"},{name:"Three children",price:135,description:"Three children in the same household"}];
+---
+<BaseLayout title="Memberships" description="Maker Square Play Place monthly memberships for families in Johnson City.">
+  <section class="section membership-intro"><div class="wrap narrow"><p class="eyebrow">More play, more memories</p><h1>{maker ? "Make room for more play" : "Memberships"}</h1><p class="lede">Come back to your favorite little town. Our month-to-month memberships are currently arranged in person at the front desk. Online enrollment is coming later.</p><a class="btn" href="/hours">Hours &amp; visit details →</a></div></section>
+  <section class="section alt"><div class="wrap"><h2>Monthly membership options</h2><div class="grid-3">{plans.map(plan=><article class="card"><h3>{plan.name}</h3><p class="price">${plan.price}/month</p><p>{plan.description}</p><p>Ask our team at the front desk to get started.</p></article>)}</div><p style="margin-top:22px">Additional children in the same household: $39 per child per month. Please confirm current terms and availability with staff before purchasing.</p></div></section>
+  <section class="section"><div class="wrap grid-2"><div><h2>How to join</h2><p>Stop by the front desk during open play, or contact us with questions. We'll help find the right membership for your household.</p><a class="btn" href="/contact">Contact us →</a></div><div class="photo"><img src="/images/gallery-1.jpg" alt="Indoor play environment" loading="lazy"/></div></div></section>
+</BaseLayout>

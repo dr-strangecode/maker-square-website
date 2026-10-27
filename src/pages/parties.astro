@@ -1,0 +1,186 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PartyForm from "../components/PartyForm.astro";
+import { brand } from "../config/site";
+
+const { publicParty, privateParty, balloon } = brand;
+---
+
+<BaseLayout
+  title="Birthday parties"
+  description={`Public and private birthday parties at ${brand.name}, Suite E3C at the Mall at Johnson City.`}
+>
+  <section class="hero">
+    <img class="bg" src="/images/party-hero.jpg" alt="party table" />
+    <div class="hero-card">
+      <p class="eyebrow">Birthdays</p>
+      <h1>Birthday parties at {brand.name}</h1>
+      <p class="lede">
+        Two ways to celebrate in Suite E3C. A Public Party keeps open play going, with your tables in a corner.
+        Private Party is the whole suite, just for your group.
+      </p>
+      <p>
+        Play time is 1 hour 45 for every party. You’re welcome to arrive 30 minutes early to set cake and tables.
+        Please request a date at least a week ahead so we can add you to the public schedule.
+        We’ll call you back to hold the slot. The party fee is collected on that call. Extra guests are settled at the end.
+      </p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap grid-2">
+      <article class="card party-card">
+        <h2>Public Party</h2>
+        <p class="price">${publicParty.saturdayPrice} Saturday · ${publicParty.weekdayPrice} weekday</p>
+        <p>
+          Your birthday corner on a live floor. Other families are still welcome to play.
+          This is not a private room.
+        </p>
+        <h3>Includes</h3>
+        <ul>
+          <li>1 hour 45 of party time</li>
+          <li>30 minutes before, if you’d like to set up</li>
+          <li>Tables, chairs, and a spot for cake and gifts</li>
+          <li>{publicParty.includedKids} playing children</li>
+          <li>1 adult included with each playing child</li>
+          <li>Grip socks for anyone in the door who needs a pair</li>
+          <li>Space for the cake, food, and decorations you bring</li>
+        </ul>
+        <p>
+          Saturday’s shared birthday is <strong>{publicParty.saturdayTime}</strong> (${publicParty.saturdayPrice}).
+          Open play that morning still starts at 9:00.
+          A weekday Public Party during open play is ${publicParty.weekdayPrice}, also 1 hour 45.
+        </p>
+        <p>
+          Extra playing child: ${publicParty.extraChild} each, up to {publicParty.rosterCap} children on the party roster.
+          An extra adult, past one per playing child, is ${brand.partyExtraAdult}.
+          We can welcome up to {brand.doorCap} people in the suite, counting open-play guests.
+        </p>
+        <a class="btn" href="#request">Request a Public Party</a>
+      </article>
+
+      <article class="card party-card">
+        <h2>Private Party</h2>
+        <p class="price">${privateParty.weekendPrice} Saturday · ${privateParty.fridayPrice} Friday</p>
+        <p>
+          The suite is yours. No other families, and no shared birthday table in the middle of open play.
+        </p>
+        <h3>Includes</h3>
+        <ul>
+          <li>1 hour 45 in the suite</li>
+          <li>30 minutes before, if you’d like to set up</li>
+          <li>Tables, chairs, and a spot for cake and gifts</li>
+          <li>{privateParty.includedKids} playing children</li>
+          <li>{privateParty.includedAdults} adults</li>
+          <li>Grip socks for anyone in the door who needs a pair</li>
+          <li>Space for the cake, food, and decorations you bring</li>
+        </ul>
+        <p>
+          Saturday afternoon is ${privateParty.weekendPrice}.
+          Friday 5:00–6:45 pm is ${privateParty.fridayPrice} for the same guest list.
+          We’re closed Sundays — no open play and no parties.
+        </p>
+        <p>
+          A playing child is a child on the play floor. An infant in arms is not charged.
+          A teenager standing and chatting counts as an adult, not as a playing child.
+        </p>
+        <p>
+          Extra playing child: ${privateParty.extraChild}. Extra adult, past the {privateParty.includedAdults} included: ${privateParty.extraAdult}.
+          Add kids, adults, or both — up to {privateParty.rosterCap} playing children, and {brand.doorCap} people in the door.
+        </p>
+        <p>
+          We collect the ${privateParty.weekendPrice} (or the Friday fee) when we hold the date.
+          Extra guests are counted from who shows up, and settled at the end of the party.
+        </p>
+        <a class="btn" href="#request">Request Private Party</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>When you can celebrate</h2>
+      <p class="lede">
+        Every block is 1 hour 45 of party time, with a gap afterward so we can reset the room.
+        Pick a time below, then send a request at least a week ahead. Sunday is closed.
+      </p>
+      <div class="day-list">
+        {brand.partySchedule.map((day) => (
+          <article class="day-card">
+            <h3>{day.day}</h3>
+            <p>{day.blurb}</p>
+            <ul class="slot-list">
+              {day.blocks.map((block) => (
+                <li>
+                  <span class="chip">{block.time}</span>
+                  <span class="slot-meta">
+                    <strong>{block.kind}</strong> · {block.price}
+                    <span class="slot-arrive">{block.arrive}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap grid-2">
+      <div>
+        <h2>{balloon.name}</h2>
+        <p class="price">${balloon.price}</p>
+        <p>
+          Three standing gold photo arches — two about 4 feet and one about 6 feet — dressed with balloons
+          in two colors. It’s our only add-on, and you can add it when you request a date.
+        </p>
+        <p>
+          If you’d like a fuller balloon wall, a photographer, or another vendor, you’re welcome to book them.
+          We just ask that they’re packed up when the party ends, so we can reset for the next family.
+        </p>
+
+        <h2>What to bring</h2>
+        <p>
+          Cake or cupcakes, food that’s ready to serve, and drinks. Please no alcohol.
+          Theme plates are welcome. Decorations can sit on the tables or stand on the floor —
+          please don’t attach anything to the walls or ceiling.
+        </p>
+        <p>
+          Grip socks are required on the play floor. Your own clean pair is fine. If you need a pair, it’s included.
+        </p>
+        <p>We don’t sell pizza or character visits.</p>
+
+        <h2>Groups</h2>
+        <p>
+          Field trips, churches, and weekday groups — call or write us.
+          We’ll help you choose a shared visit or a time when the suite can be yours.
+        </p>
+      </div>
+      <div class="photo">
+        <img src="/images/party-table.jpg" alt="Birthday table inside the play cafe" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <div>
+        <h2>A few things that help the day go smoothly</h2>
+        <ul>
+          <li>We’ll take the party fee on the phone call that holds your date. That fee follows the cancel rule below.</li>
+          <li>Cancel 14 or more days ahead and we’ll return half. Inside 14 days we can’t refund, but we’ll try once to move you if another slot is open.</li>
+          <li>Extra playing children and extra adults are counted from who shows up, and settled at the end of the party.</li>
+          <li>Every child needs a waiver from that child’s own parent or legal guardian. We’ll send the link so you can share it with guest parents.</li>
+          <li>Please plan to be wrapped up at the end time. We use the next stretch to reset the room.</li>
+          <li>Grown-ups stay off the play equipment. It’s built for little bodies.</li>
+        </ul>
+      </div>
+      <div class="card" id="request">
+        <h2>Request a date</h2>
+        <p>Tell us your first choice and a backup. We’ll call to confirm.</p>
+        <PartyForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

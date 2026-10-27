@@ -1,0 +1,169 @@
+---
+import { brand } from "../config/site";
+const hasKey = Boolean(brand.web3formsKey);
+const groups = [...new Set(brand.partyTimeChoices.map((choice) => choice.group))];
+---
+
+{hasKey ? (
+  <form id="party-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value={brand.web3formsKey} />
+    <input type="hidden" name="subject" value={`${brand.name} party request`} />
+    <input type="hidden" name="from_name" value={`${brand.name} parties`} />
+    <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" />
+
+    <label>
+      Your name
+      <input type="text" name="name" required autocomplete="name" />
+    </label>
+    <label>
+      Phone
+      <input type="tel" name="phone" required autocomplete="tel" />
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" required autocomplete="email" />
+    </label>
+    <label>
+      Child’s name and age
+      <input type="text" name="child" required placeholder="Name, age" />
+    </label>
+    <label>
+      Package
+      <select name="package" required>
+        <option value="">Choose one</option>
+        <option value="Public Party">Public Party</option>
+        <option value="Private Party">Private Party</option>
+      </select>
+    </label>
+    <label>
+      Balloon Set (${brand.balloon.price})
+      <select name="balloon_set">
+        <option value="No">No, thank you</option>
+        <option value="Yes">Yes, please add it</option>
+      </select>
+    </label>
+    <label>
+      First date
+      <input type="date" name="date_1" required />
+    </label>
+    <label>
+      First time
+      <select name="slot_1" required>
+        <option value="">Choose a time</option>
+        {groups.map((group) => (
+          <optgroup label={group}>
+            {brand.partyTimeChoices
+              .filter((choice) => choice.group === group)
+              .map((choice) => (
+                <option value={choice.value}>{choice.value.replace(` · ${group}`, "")}</option>
+              ))}
+          </optgroup>
+        ))}
+      </select>
+    </label>
+    <label>
+      Second date
+      <input type="date" name="date_2" />
+    </label>
+    <label>
+      Second time
+      <select name="slot_2">
+        <option value="">Optional backup</option>
+        {groups.map((group) => (
+          <optgroup label={group}>
+            {brand.partyTimeChoices
+              .filter((choice) => choice.group === group)
+              .map((choice) => (
+                <option value={choice.value}>{choice.value.replace(` · ${group}`, "")}</option>
+              ))}
+          </optgroup>
+        ))}
+      </select>
+    </label>
+    <p class="form-note">Sunday is closed. Please pick Monday–Saturday.</p>
+    <label>
+      Playing children (estimate)
+      <input type="number" name="kids" min="1" max={brand.privateParty.rosterCap} required />
+    </label>
+    <p class="form-note">Public Party rosters go to {brand.publicParty.rosterCap}. Private Party goes to {brand.privateParty.rosterCap}.</p>
+    <label>
+      Adults (estimate)
+      <input type="number" name="adults" min="1" max={brand.doorCap} required />
+    </label>
+    <label>
+      Anything we should know
+      <textarea name="notes"></textarea>
+    </label>
+    <button class="btn" type="submit">Request this date</button>
+    <p class="form-note">
+      Please give us at least a week so we can put you on the schedule.
+      Or call <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a>.
+      We don’t take party payments on this page.
+    </p>
+    <p class="form-ok" id="party-ok" hidden>Request received. We’ll call to hold the slot.</p>
+    <p class="form-err" id="party-err" hidden>That didn’t send. Please call us and we’ll take it by phone.</p>
+    <p class="form-err" id="party-sunday" hidden>Sunday is closed. Please choose a Monday–Saturday date.</p>
+  </form>
+) : (
+  <div class="notice">
+    <p>
+      Call <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a> or email
+      <a href={`mailto:${brand.email}`}>{brand.email}</a> with your date, time, and package.
+      Please give us at least a week. We don’t take party payments on this page.
+    </p>
+  </div>
+)}
+
+{hasKey && (
+  <script is:inline>
+    const form = document.getElementById("party-form");
+    const sundayNote = document.getElementById("party-sunday");
+    const dateFields = [form?.elements.namedItem("date_1"), form?.elements.namedItem("date_2")].filter(Boolean);
+
+    const isSunday = (value) => {
+      if (!value) return false;
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day).getDay() === 0;
+    };
+
+    const clearSunday = (field) => {
+      if (!isSunday(field.value)) return false;
+      field.value = "";
+      field.setCustomValidity("Sunday is closed. Please choose Monday through Saturday.");
+      field.reportValidity();
+      return true;
+    };
+
+    dateFields.forEach((field) => {
+      field.addEventListener("input", () => {
+        field.setCustomValidity("");
+        if (clearSunday(field) && sundayNote) sundayNote.hidden = false;
+      });
+    });
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const ok = document.getElementById("party-ok");
+      const err = document.getElementById("party-err");
+      ok.hidden = true;
+      err.hidden = true;
+      if (sundayNote) sundayNote.hidden = true;
+      if (dateFields.some(clearSunday)) {
+        if (sundayNote) sundayNote.hidden = false;
+        return;
+      }
+      try {
+        const res = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          ok.hidden = false;
+        } else {
+          err.hidden = false;
+        }
+      } catch {
+        err.hidden = false;
+      }
+    });
+  </script>
+)}

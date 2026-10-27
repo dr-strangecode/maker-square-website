@@ -1,0 +1,16 @@
+---
+import { brand } from "../config/site";
+---
+
+<div class="map-block">
+  <div class="map-frame">
+    <iframe
+      title={`Map showing ${brand.name} at the Mall at Johnson City`}
+      src={brand.mapsEmbedSrc}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <p class="map-link"><a href={brand.mapsUrl} target="_blank" rel="noopener noreferrer">View the correct business pin in Google Maps ↗</a></p>
+</div>

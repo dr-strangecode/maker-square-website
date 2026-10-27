@@ -1,0 +1,67 @@
+---
+import { brand } from "../config/site";
+const hasKey = Boolean(brand.web3formsKey);
+---
+
+{hasKey ? (
+  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value={brand.web3formsKey} />
+    <input type="hidden" name="subject" value={`${brand.name} website contact`} />
+    <input type="hidden" name="from_name" value={brand.name} />
+    <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" />
+
+    <label>
+      Your name
+      <input type="text" name="name" required autocomplete="name" />
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" required autocomplete="email" />
+    </label>
+    <label>
+      Phone
+      <input type="tel" name="phone" required autocomplete="tel" />
+    </label>
+    <label>
+      Message
+      <textarea name="message" required></textarea>
+    </label>
+    <button class="btn" type="submit">Send message</button>
+    <p class="form-note">Or call <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a>. This form does not take payments.</p>
+    <p class="form-ok" id="contact-ok" hidden>Got it. We’ll reply from {brand.email}.</p>
+    <p class="form-err" id="contact-err" hidden>Something didn’t send. Call or email us instead.</p>
+  </form>
+) : (
+  <div class="notice">
+    <p>
+      Email <a href={`mailto:${brand.email}`}>{brand.email}</a> or call
+      <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a>.
+      We will turn this box into a send form as soon as the inbox key is in place.
+    </p>
+  </div>
+)}
+
+{hasKey && (
+  <script is:inline>
+    const form = document.getElementById("contact-form");
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const ok = document.getElementById("contact-ok");
+      const err = document.getElementById("contact-err");
+      ok.hidden = true;
+      err.hidden = true;
+      try {
+        const res = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          ok.hidden = false;
+        } else {
+          err.hidden = false;
+        }
+      } catch {
+        err.hidden = false;
+      }
+    });
+  </script>
+)}

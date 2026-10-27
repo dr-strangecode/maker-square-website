@@ -1,0 +1,8 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {brand} from "../config/site";
+---
+<BaseLayout title="Events" description="Events and special happenings at Maker Square Play Place in Johnson City.">
+ <section class="section"><div class="wrap grid-2"><div><p class="eyebrow">More ways to make memories</p><h1>Events &amp; special play days</h1><p class="lede">We're planning more chances to play, celebrate and connect. Check back for upcoming event details and signups.</p><p>For current announcements, visit our social pages or contact our team. We won't advertise signups or dates until they're confirmed.</p><div class="actions"><a class="btn" href={brand.facebook} target="_blank" rel="noopener noreferrer">See Facebook updates →</a><a class="btn ghost" href="/contact">Ask a question</a></div></div><div class="photo"><img src="/images/gallery-1.jpg" alt="Indoor play space" loading="lazy"/></div></div></section>
+ <section class="section alt"><div class="wrap narrow"><h2>Want to visit today?</h2><p>Open play runs on our posted hours. You can see admission details, parking information and our waiver before you arrive.</p><a class="btn" href="/hours">Plan your visit →</a></div></section>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import { brand, brandId, nav } from "../config/site";
+import LocationAddress from "./LocationAddress.astro";
+const footerNav = brandId === "maker" ? [
+  {href:"/hours",label:"Plan your visit"}, {href:"/memberships",label:"Memberships"}, {href:"/parties",label:"Birthday parties"}, {href:"/events",label:"Events"}, {href:"/gallery",label:"Gallery"}, {href:"/rules",label:"Rules & waiver"}, {href:"/contact",label:"Contact"}
+] : nav;
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <strong>{brand.name}</strong>
+      <LocationAddress compact />
+      <p>
+        <a href={`mailto:${brand.email}`}>{brand.email}</a><br />
+        <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a>
+      </p>
+      <p class="fine">{brand.footerLegal}</p>
+      {brand.showRelaunchNote && (
+        <p class="fine">A full relaunch as Maker Square is coming. Bookings from October 1 are with the new operator.</p>
+      )}
+    </div>
+    <div>
+      <strong>Visit</strong>
+      <p>
+        {footerNav.map((item) => (
+          <>
+            <a href={item.href}>{item.label}</a>
+            <br />
+          </>
+        ))}
+      </p>
+    </div>
+    <div>
+      <strong>Hours</strong>
+      <p>
+        {brand.hours.map((entry) => <>{entry.day}: {entry.time}<br /></>)}
+      </p>
+      <p>
+        <a href={brand.facebook}>Facebook</a><br />
+        <a href={brand.instagram}>Instagram</a>
+      </p>
+    </div>
+  </div>
+</footer>

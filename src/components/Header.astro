@@ -1,0 +1,20 @@
+---
+import { brand, brandId, nav } from '../config/site';
+import makerTemplate from './maker/header.html?raw';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const escape = (text: string) => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+const makerHeader = makerTemplate
+  .replace('{{HOME_CLASS}}', path === '/' ? 'ms-header-home' : '')
+  .replace('{{LOGO}}', escape(brand.logoSrc))
+  .replace(`href="${path}" data-ms-nav`, `href="${path}" data-ms-nav aria-current="page"`);
+---
+{brandId === 'maker' ? <Fragment set:html={makerHeader} /> : (
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo-link" href="/"><img src={brand.logoSrc} alt={brand.logoAlt} width="64" height="64"/><span class="logo-word">{brand.name}</span></a>
+    <nav class="nav-desktop" aria-label="Primary">{nav.map(item => <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>)}</nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+  </div>
+  <nav class="nav-mobile wrap" id="mobile-nav" aria-label="Mobile">{nav.map(item => <a href={item.href}>{item.label}</a>)}</nav>
+</header>
+)}

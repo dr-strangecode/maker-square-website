@@ -1,0 +1,38 @@
+---
+import { brand, brandId } from "../config/site";
+
+interface Props {
+  showParking?: boolean;
+  compact?: boolean;
+}
+const { showParking = false, compact = false } = Astro.props;
+---
+{brandId === "maker" ? (
+  <div class:list={["location-links", { "location-links-compact": compact }]}>
+    <a
+      class="location-address-link"
+      href={brand.mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open our actual business location in Google Maps"
+    >
+      <span>{brand.addressLine1}</span>
+      <span>{brand.addressLine2}</span>
+      <span>{brand.addressLine3}</span>
+      <span class="location-address-hint">View our location on Google Maps ↗</span>
+    </a>
+    {showParking && (
+      <p class="location-parking-note">
+        <strong>We're behind the mall!</strong> Enter from the outside, near Women's Belk and Mall Entrance D. Park in Lot 17. Please use our map link rather than searching the mall's address.
+      </p>
+    )}
+    <a class="location-directions-link" href={brand.mapsDirectionsUrl} target="_blank" rel="noopener noreferrer">
+      Get driving directions <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+) : (
+  <div class="location-links">
+    <p>{brand.addressLine1}<br />{brand.addressLine2}<br />{brand.addressLine3}</p>
+    {showParking && <p>{brand.parking}</p>}
+  </div>
+)}

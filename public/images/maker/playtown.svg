@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="leaf" x2="1" y2="1"><stop stop-color="#8acb30"/><stop offset="1" stop-color="#4fa326"/></linearGradient>
+  <linearGradient id="lawn" x2="0" y2="1"><stop stop-color="#d8ed88"/><stop offset="1" stop-color="#8dc847"/></linearGradient>
+  <linearGradient id="teal" x2="1" y2="1"><stop stop-color="#15bac7"/><stop offset="1" stop-color="#008b9d"/></linearGradient>
+  <linearGradient id="gold" x2="1" y2="1"><stop stop-color="#ffe070"/><stop offset="1" stop-color="#ffb717"/></linearGradient>
+ </defs>
+ <symbol id="home" viewBox="0 0 100 100"><path d="M16 44 50 14 84 44V89H59V61H41V89H16Z" fill="#0576bd"/><path d="m8 46 42-37 42 37" fill="none" stroke="#06a2cd" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 46v30" stroke="#fff" stroke-opacity=".24" stroke-width="7" stroke-linecap="round"/></symbol>
+ <symbol id="tree" viewBox="0 0 100 100"><path d="M48 5c-14 0-23 10-22 23C8 29 4 52 16 63c-4 20 18 28 32 21 22 12 43-2 37-20 15-16 6-34-9-36C76 12 65 2 48 5Z" fill="url(#leaf)"/><path d="M48 90V53" stroke="#81521f" stroke-width="10" stroke-linecap="round"/><path d="m48 70 15-14" stroke="#81521f" stroke-width="6" stroke-linecap="round"/><path d="M7 96c1-13 13-16 20-10 5-12 21-9 22 1 12-10 24-4 22 9" fill="#73b731"/></symbol>
+ <symbol id="car" viewBox="0 0 100 100"><path d="M7 61c0-10 8-17 21-18 8-27 43-27 55 0 15 2 19 12 16 26H5Z" fill="#ff531c"/><path d="M36 42c2-12 9-17 16-17v17Zm24-17c8 1 14 6 16 17H60Z" fill="#dff9ff"/><path d="M12 58h17" stroke="#ffb263" stroke-width="6" stroke-linecap="round"/><circle cx="27" cy="71" r="12" fill="#0a3557"/><circle cx="79" cy="71" r="12" fill="#0a3557"/><circle cx="27" cy="71" r="5" fill="#145782"/><circle cx="79" cy="71" r="5" fill="#145782"/></symbol>
+ <symbol id="star" viewBox="0 0 100 100"><path d="m50 7 13 27 30 4-22 23 5 31-26-15-27 15 5-31L7 38l30-4Z" fill="#ffbf0c" stroke="#ffc532" stroke-width="5" stroke-linejoin="round"/></symbol>
+ <symbol id="calendar" viewBox="0 0 100 100"><rect x="13" y="20" width="74" height="70" rx="10" fill="#039db8"/><path d="M13 43h74" stroke="#fff" stroke-width="5"/><path d="M32 12v17m36-17v17" stroke="#103655" stroke-width="8" stroke-linecap="round"/><path d="M30 58h7m13 0h7m13 0h0M30 74h7m13 0h7m13 0h0" stroke="#fff" stroke-width="8" stroke-linecap="round"/></symbol>
+ <symbol id="heart" viewBox="0 0 100 100"><path d="M50 88C34 74 5 54 9 30 13 8 40 8 50 28 61 8 87 8 91 30c4 24-26 45-41 58Z" fill="#fa70b2"/><path d="M23 33c0-9 9-13 14-10" fill="none" stroke="#ffc9e4" stroke-width="7" stroke-linecap="round"/></symbol>
+ <symbol id="heart-house" viewBox="0 0 100 100"><path d="M15 43 50 12 86 43v49H15Z" fill="#ffb5dd"/><path d="M9 43 50 7 92 43" fill="none" stroke="#922d91" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 44v40h54V44L50 21Z" fill="#fff0f8"/><use href="#heart" x="30" y="42" width="43" height="43"/></symbol>
+ <symbol id="sun" viewBox="0 0 100 100"><g stroke="#ffbc0d" stroke-width="7" stroke-linecap="round"><path d="M50 4v10m0 72v10M4 50h10m72 0h10M17 17l8 8m50 50 8 8M17 83l8-8m50-50 8-8"/></g><circle cx="50" cy="50" r="27" fill="#ffc512"/><path d="M31 39c4-8 12-12 20-12" fill="none" stroke="#ffe57c" stroke-width="5" stroke-linecap="round"/></symbol>
+ <symbol id="pin" viewBox="0 0 100 100"><path d="M50 95S17 58 17 36a33 33 0 0 1 66 0c0 22-33 59-33 59Z" fill="currentColor"/><circle cx="50" cy="35" r="12" fill="#069aaa"/></symbol>
+ <symbol id="cake" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 91h76M18 89V62h64v27M28 61V40h44v21M36 38V26m14 12V22m14 16V26M18 72q8 11 16 0 8 11 16 0 8 11 16 0 8 11 16 0M28 47q7 9 14 0 8 9 16 0 7 9 14 0"/></g><path d="M36 11q-11 14 0 13t0-13m14-8q-11 14 0 13t0-13m14 8q-11 14 0 13t0-13" fill="currentColor"/></symbol>
+ <symbol id="people" viewBox="0 0 100 100"><g fill="currentColor"><circle cx="50" cy="24" r="14"/><circle cx="18" cy="32" r="11"/><circle cx="82" cy="32" r="11"/><path d="M31 89V60a19 19 0 0 1 38 0v29ZM3 83V58q0-20 24-13v38Zm70 0V45q24-7 24 13v25Z"/></g></symbol>
+ <symbol id="ticket" viewBox="0 0 100 100"><path d="M9 26h82v16a10 10 0 0 0 0 20v16H9V62a10 10 0 0 0 0-20Z" fill="#ffce21"/><path d="M66 32v39" stroke="#ca8c05" stroke-width="4" stroke-dasharray="5 5"/><path d="m39 37 5 9 10 1-7 7 2 10-10-5-9 5 2-10-7-7 10-1Z" fill="#f6a00a"/></symbol>
+ <symbol id="shoe" viewBox="0 0 100 100"><path d="m10 68 32-30 16 6 3 15c8 6 16 9 27 10 9 5 9 16 0 20H20C5 86 2 78 10 68Z" fill="#087db6"/><path d="m38 50 13 6m-22 3 13 6M9 79q30 11 79-1" fill="none" stroke="#e6f8ff" stroke-width="5" stroke-linecap="round"/></symbol>
+ <symbol id="gift" viewBox="0 0 100 100"><path d="M18 45h64v46H18Z" fill="#ff5923"/><rect x="11" y="34" width="78" height="20" rx="5" fill="#ff831e"/><path d="M44 34h12v57H44Z" fill="#ffce20"/><path d="M50 34C12 31 28-3 50 26 71-3 88 31 50 34Z" fill="none" stroke="#ff642a" stroke-width="7" stroke-linecap="round"/></symbol>
+ <symbol id="cloud" viewBox="0 0 170 75"><path d="M24 73C-7 73-8 33 22 31 17 3 54-7 67 16 82-7 121-1 124 28c40-3 46 45 11 45Z" fill="currentColor"/></symbol>
+ <symbol id="flower" viewBox="0 0 70 90"><path d="M35 85V38m0 37q-20 0-20-17m20 10q20 0 20-18" fill="none" stroke="#5fae31" stroke-width="5" stroke-linecap="round"/><g fill="#fffdf1"><ellipse cx="35" cy="18" rx="9" ry="16"/><ellipse cx="35" cy="18" rx="9" ry="16" transform="rotate(72 35 35)"/><ellipse cx="35" cy="18" rx="9" ry="16" transform="rotate(144 35 35)"/><ellipse cx="35" cy="18" rx="9" ry="16" transform="rotate(216 35 35)"/><ellipse cx="35" cy="18" rx="9" ry="16" transform="rotate(288 35 35)"/></g><circle cx="35" cy="35" r="10" fill="#ffbd20"/></symbol>
+ <symbol id="house" viewBox="0 0 110 150"><path d="M53 5V31" stroke="#094362" stroke-width="5"/><path d="m55 6 28 10-28 9" fill="#039caf"/><path d="M15 78 55 42 96 78v66H15Z" fill="#ffc841"/><path d="m7 80 48-44 48 44" fill="none" stroke="#f99827" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 88h63v56H24Z" fill="#ffe070"/><path d="M43 144v-35q12-21 25 0v35" fill="#ff682c"/><path d="M49 144v-33q6-10 13 0v33" fill="#ff993d"/></symbol>
+ <symbol id="blue-house" viewBox="0 0 110 150"><path d="M13 68 55 23 97 68v76H13Z" fill="#ffcd31"/><path d="m7 70 48-51 49 51" fill="none" stroke="#f5afd4" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><circle cx="55" cy="65" r="16" fill="#fff6c0" stroke="#103e60" stroke-width="5"/><path d="M55 50v30M40 65h30" stroke="#103e60" stroke-width="4"/><path d="M13 92h84v52H13Z" fill="#086ea7"/><path d="M28 144v-31q0-12 13-12t13 12v31" fill="#003a60"/><path d="M66 104h20v27H66Z" fill="#edfaff" stroke="#093f68" stroke-width="4"/><path d="M76 104v27" stroke="#093f68" stroke-width="3"/></symbol>
+ <symbol id="garden" viewBox="0 0 1440 160">
+  <path d="M0 112Q130 10 240 103T510 108T780 120T1110 109T1440 92V160H0Z" fill="#d9ed8c"/>
+  <path d="M0 139Q120 95 254 132T520 133T840 145T1090 129T1440 135V160H0Z" fill="#a5d651"/>
+  <g fill="#74b832"><path d="M0 160v-35q6-16 20 0 8-30 25-5 28-25 37 7 21-12 30 14v19ZM230 160q-4-29 20-22 1-27 24-17 15-29 27 0 25-16 30 12 18-15 28 7v20ZM820 160q-7-29 18-23 8-30 30-10 18-38 35-10 23-6 29 20 25-15 33 7v16ZM1280 160q-7-30 15-28 6-28 25-15 23-33 38-6 28-9 32 17 35-16 50 3v29Z"/></g>
+  <use href="#tree" x="-28" y="0" width="105" height="158"/><use href="#tree" x="1324" y="4" width="123" height="155"/>
+  <use href="#flower" x="52" y="94" width="27" height="53"/><use href="#flower" x="81" y="115" width="21" height="36"/><use href="#flower" x="1250" y="92" width="32" height="59"/><use href="#flower" x="1286" y="114" width="20" height="36"/>
+ </symbol>
+ <symbol id="village" viewBox="0 0 1440 420">
+  <path d="M0 260Q180 145 357 282T708 340T1070 299T1440 241V420H0Z" fill="url(#lawn)"/>
+  <path d="M0 330Q180 235 394 352T770 378T1127 352T1440 299V420H0Z" fill="#b6d961"/>
+  <path d="M907 429c14-87 328-87 381-163s-181-53-153-120c8-20 41-29 62-33" fill="none" stroke="#fffdf6" stroke-width="100"/>
+  <path d="M907 429c14-87 328-87 381-163s-181-53-153-120c8-20 41-29 62-33" fill="none" stroke="#95a8b5" stroke-width="84"/>
+  <path d="M907 429c14-87 328-87 381-163s-181-53-153-120c8-20 41-29 62-33" fill="none" stroke="#f9fdff" stroke-width="5" stroke-dasharray="19 22" stroke-linecap="round"/>
+  <use href="#house" x="1154" y="4" width="95" height="137"/><use href="#blue-house" x="1235" y="23" width="102" height="133"/>
+  <use href="#tree" x="1340" y="22" width="81" height="153"/><use href="#tree" x="1095" y="34" width="72" height="114"/>
+  <use href="#tree" x="315" y="255" width="52" height="86"/><use href="#tree" x="405" y="291" width="36" height="61"/>
+  <use href="#tree" x="987" y="271" width="55" height="90"/><use href="#tree" x="1392" y="262" width="75" height="127"/>
+  <use href="#car" x="1122" y="246" width="104" height="93"/>
+  <g fill="#7eb832"><path d="M0 420v-45q16-40 36-9 23-41 47-5 25-25 41 8 30-29 52 4 28-26 45 11v36ZM1330 420v-37q8-31 32-20 10-28 34-8 22-19 44 4v61Z"/></g>
+  <use href="#flower" x="16" y="296" width="45" height="87"/><use href="#flower" x="72" y="335" width="30" height="58"/><use href="#flower" x="272" y="335" width="25" height="56"/><use href="#flower" x="961" y="355" width="28" height="55"/><use href="#flower" x="1368" y="347" width="38" height="70"/>
+ </symbol>
+ <symbol id="street" viewBox="0 0 1440 190">
+  <path d="M0 129q150-70 300 0t300 0 300 0 300 0 240-7v68H0Z" fill="#cce78c"/>
+  <use href="#blue-house" x="16" y="26" width="83" height="128"/><use href="#house" x="92" y="16" width="85" height="137"/>
+  <use href="#tree" x="204" y="74" width="64" height="93"/><use href="#tree" x="1170" y="47" width="87" height="115"/><use href="#house" x="1280" y="14" width="108" height="145"/>
+  <g fill="#75b537"><path d="M280 162q-5-28 19-23 4-24 24-16 23-28 36 0 24-12 33 14 18-21 34 2 19-29 34-1 19-8 24 24Zm420 0q-2-30 21-18 11-36 33-16 18-23 30 0 30-27 44 9 20-16 36 7 18-23 35 0 27-23 47 5v13Zm280 0q-6-23 18-20 5-28 28-17 13-29 28-2 22-14 30 15 19-15 27 12v12Z"/></g>
+  <use href="#flower" x="492" y="112" width="30" height="52"/><use href="#flower" x="534" y="129" width="20" height="35"/><use href="#flower" x="1071" y="116" width="26" height="47"/>
+  <path d="M0 157q360 14 720 0t720 0v33H0Z" fill="#7793a7"/><path d="M0 175q360 14 720 0t720 0" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="25 35" stroke-linecap="round"/>
+  <use href="#car" x="670" y="114" width="81" height="65"/>
+ </symbol>
+</svg>

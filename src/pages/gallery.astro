@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { brand } from "../config/site";
+
+const photos = [
+  { src: "/images/gallery-1.jpg", alt: "Play room at Little Bloom House" },
+  { src: "/images/gallery-2.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-3.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-4.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-5.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-6.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-7.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-8.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-9.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-10.jpg", alt: "Play room from another angle" },
+  { src: "/images/gallery-11.jpg", alt: "Sitting area and tables" },
+  { src: "/images/gallery-12.jpg", alt: "Sitting area and tables" },
+];
+---
+
+<BaseLayout title="Gallery" description={`Photos of ${brand.name} at the Mall at Johnson City.`}>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">{brand.name}</p>
+      <h1>Inside the suite</h1>
+      <p class="lede">
+        A few pics of the playroom. The rest is better in person — come by during open play.
+      </p>
+      <div class="gallery-grid">
+        {photos.map((p) => (
+          <img src={p.src} alt={p.alt} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

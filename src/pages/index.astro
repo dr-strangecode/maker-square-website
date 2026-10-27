@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Home from '../components/maker/Home.astro';
+import { brand, brandId } from '../config/site';
+---
+<BaseLayout title={brandId === 'maker' ? 'A little town of big imaginations' : 'Home'} description={`${brand.name} — indoor play, family memberships and celebrations at the Mall at Johnson City.`}>
+  {brandId === 'maker' ? <Home /> : (
+    <section class="hero"><img class="bg" src="/images/hero-1.jpeg" alt="Play room"/><div class="hero-card"><h1>Welcome to {brand.name}</h1><p class="lede">{brand.tagline}</p><a class="btn" href="/hours">Hours and prices</a> <a class="btn ghost" href="/parties">Parties</a></div></section>
+  )}
+</BaseLayout>

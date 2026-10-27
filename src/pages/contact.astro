@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import MapEmbed from "../components/MapEmbed.astro";
+import LocationAddress from "../components/LocationAddress.astro";
+import { brand } from "../config/site";
+---
+
+<BaseLayout title="Contact" description={`Call, email, or write ${brand.name} in Johnson City.`}>
+  <section class="section">
+    <div class="wrap grid-2">
+      <div>
+        <p class="eyebrow">Reach us</p>
+        <h1>We’d love to hear from you</h1>
+        <p>Call, email, or send a note. Party questions and everyday visit questions both come here.</p>
+        <LocationAddress showParking />
+        <p>
+          <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a><br />
+          <a href={`mailto:${brand.email}`}>{brand.email}</a>
+        </p>
+        {brand.showRelaunchNote && (
+          <p class="fine">
+            New owners as of October 2026. Same suite. Please use this phone and email — not the old booking page.
+          </p>
+        )}
+        <MapEmbed />
+      </div>
+      <div class="card">
+        <h2>Write to us</h2>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

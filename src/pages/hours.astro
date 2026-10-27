@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MapEmbed from "../components/MapEmbed.astro";
+import LocationAddress from "../components/LocationAddress.astro";
+import { brand } from "../config/site";
+---
+
+<BaseLayout title="Hours and prices" description={`Open play hours, visit prices, and how to find ${brand.name} at the Mall at Johnson City.`}>
+  <section class="section">
+    <div class="wrap grid-2">
+      <div>
+        <p class="eyebrow">Location and hours</p>
+        <h1>Come see us</h1>
+        <LocationAddress showParking />
+        <p>
+          <a href={`tel:${brand.phoneTel}`}>{brand.phoneDisplay}</a><br />
+          <a href={`mailto:${brand.email}`}>{brand.email}</a>
+        </p>
+        <MapEmbed />
+      </div>
+      <div>
+        <div class="card">
+          <h2>Open play</h2>
+          <table class="hours-table">
+            <tbody>
+              {brand.hours.map((row) => (
+                <tr>
+                  <th>{row.day}</th>
+                  <td>
+                    {row.time}
+                    <div class="fine">{row.note}</div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="form-note">
+            Hours can change for private events or weather. Check our
+            <a href={brand.facebook} target="_blank" rel="noopener">Facebook page</a>
+            for this week’s hours before you come.
+          </p>
+        </div>
+        <div class="card price-card">
+          <h2>What a visit costs</h2>
+          <p>{brand.openPlay.note}</p>
+          <table class="hours-table">
+            <tbody>
+              {brand.openPlay.rows.map((row) => (
+                <tr>
+                  <th>{row.label}</th>
+                  <td>{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="form-note">
+            Grip socks are required on the play floor. Your own clean pair is fine. Need a pair for open play? $2.50 at the desk.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap grid-2">
+      <div>
+        <h2>Before you come</h2>
+        <ul>
+          <li>Please have each child’s parent or legal guardian sign the waiver. A host can’t sign for a guest.</li>
+          <li>Grip socks are required on the play floor. Your own clean pair is fine. Need a pair for open play? $2.50 at the desk.</li>
+          <li>A visit is usually about two hours. We don’t sell open-play tickets online.</li>
+          <li>Memberships are month to month at the desk. Not on this site yet.</li>
+          <li>If someone in your family is sick, we’d love to see you another day.</li>
+          <li>Please keep grown-ups off the play equipment. It’s built for little bodies.</li>
+        </ul>
+      </div>
+      <div class="photo">
+        <img src="/images/hero-1.jpeg" alt="wide area of play room" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

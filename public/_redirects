@@ -1,0 +1,8 @@
+# Square Online path map — explicit 301s only. Do not add /* → /
+/events              /           301
+/pricing             /parties    301
+/rules-and-waiver    /rules      301
+/know-before-you-go  /hours      301
+/contact-us          /contact    301
+/shop-our-playroom   /           301
+/gallery/            /gallery    301
